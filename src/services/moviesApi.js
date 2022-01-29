@@ -1,6 +1,18 @@
 const API_KEY = "f28c6e4cd4b5fdd3cdf71f987d321bdd";
 const BASE_URL = "https://api.themoviedb.org/3";
 
+export const fetchTrendingMovies = async (page) => {
+  const response = await fetch(
+    `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${page}`
+  );
+
+  return response.ok
+    ? response.json()
+    : Promise.reject(
+        new Error("Images has not been found. Please, check your request!")
+      );
+};
+
 export const fetchMovies = async (query) => {
   const response = await fetch(
     `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`

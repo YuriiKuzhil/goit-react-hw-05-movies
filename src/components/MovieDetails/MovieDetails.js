@@ -1,10 +1,22 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import { fetchMoviesById } from "../../services/moviesApi";
-import { MovieCard, Images } from "./MovieDetails.styled";
+import Loader from "../Loader";
+import {
+  MovieCard,
+  Images,
+  Title,
+  Span,
+  Text,
+  TitleText,
+  GenresList,
+  Item,
+} from "./MovieDetails.styled";
 
 export default function MovieDetails() {
   const [movie, setMovie] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   const ImgBaseURL = "https://image.tmdb.org/t/p/original";
 
@@ -12,27 +24,48 @@ export default function MovieDetails() {
     fetchMoviesById(movieId).then(setMovie);
   }, [movieId]);
 
-  return (
+  useEffect(() => {
+    const fetchMovieDetails = async () => {
+      setIsLoading(true);
+      try {
+        const data = await fetchMoviesById(movieId);
+        setMovie(data);
+      } catch {
+        toast.error("Something wrong!");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchMovieDetails();
+  }, [movieId]);
+
+  return isLoading ? (
+    <Loader />
+  ) : (
     !!movie && (
       <MovieCard>
         <Images src={`${ImgBaseURL}/${movie.poster_path}`} alt={movie.title} />
         <div>
-          <h2>{movie.title}</h2>
-          <p>
-            Vote/Votes: {movie.vote_average} / {movie.vote_count}
-          </p>
-          <h3>Overview</h3>
-          <p>{movie.overview}</p>
-          <h3>Genres</h3>
-          <ul>
+          <Title>{movie.title}</Title>
+          <Text>
+            <Span>Vote/Votes:</Span> {movie.vote_average} / {movie.vote_count}
+          </Text>
+          <TitleText>Overview</TitleText>
+          <Text>{movie.overview}</Text>
+          <TitleText>Genres</TitleText>
+          <GenresList>
             {movie.genres.map((item) => (
-              <li>{item.name}</li>
+              <Item key={item.id}>{item.name}</Item>
             ))}
-          </ul>
-          <h3>Additional information</h3>
+          </GenresList>
+          <TitleText>Additional information</TitleText>
           <ul>
-            <Link to="cast">Cast</Link>
-            <Link to="reviews">Reviews</Link>
+            <Item>
+              <Link to="cast">Cast</Link>
+            </Item>
+            <Item>
+              <Link to="reviews">Reviews</Link>
+            </Item>
           </ul>
         </div>
       </MovieCard>

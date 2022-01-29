@@ -21,7 +21,6 @@ export default function Reviews() {
     //    setReviews(item.results);
     // });
   }, [movieId]);
-  console.log(reviews);
 
   return reviews.length > 0 ? (
     <ul>

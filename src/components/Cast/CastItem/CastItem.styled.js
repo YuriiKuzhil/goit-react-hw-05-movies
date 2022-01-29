@@ -1,16 +1,23 @@
 import styled from "styled-components";
 
 export const Image = styled.img`
-  width: 100px;
+  width: 60px;
+  margin-right: 20px;
 `;
 export const Item = styled.li`
   display: flex;
   align-items: center;
-  flex-direction: column;
-  /* border-radius: 2px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12); */
+  :not(:last-child) {
+    margin-bottom: 10px;
+  }
 `;
 export const Text = styled.p`
-  font-size: 14px;
+  font-size: 16px;
+`;
+export const Name = styled.h3`
+  margin-bottom: 10px;
+`;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
