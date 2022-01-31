@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-
 import { Item, Wrapper, Image, Text, Name } from "./CastItem.styled";
 
 export default function CastItem({ name, character, imageUrl }) {

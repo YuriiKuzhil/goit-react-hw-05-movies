@@ -4,7 +4,7 @@ import { fetchTrendingMovies } from "../services/moviesApi";
 import PageTitle from "../components/PageTitle";
 import ButtonLoadMore from "../components/ButtonLoadMore";
 import Loader from "../components/Loader";
-import TrendingMoviesList from "../components/TrendingMoviesList";
+import MoviesList from "../components/MoviesList";
 
 export default function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -40,7 +40,7 @@ export default function HomePage() {
     <div>
       <PageTitle text="Trending Movies for the week" />
 
-      <TrendingMoviesList trendingMovies={trendingMovies} />
+      <MoviesList movies={trendingMovies} />
 
       {isLoading ? (
         <Loader />

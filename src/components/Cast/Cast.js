@@ -13,12 +13,6 @@ export default function Cast() {
   const ImgBaseURL = "https://image.tmdb.org/t/p/original";
 
   useEffect(() => {
-    fetchCastByMovieId(movieId).then((item) => {
-      setCast(item.cast);
-    });
-  }, [movieId]);
-
-  useEffect(() => {
     const fetchCast = async () => {
       setIsLoading(true);
       try {
