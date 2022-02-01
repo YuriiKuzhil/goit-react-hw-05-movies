@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Item, StyledLink } from "./MoviesItem.styled";
 import { useLocation } from "react-router-dom";
 
-export default function TrendingMoviesItem({ id, title }) {
+export default function MoviesItem({ id, title }) {
   const location = useLocation();
   return (
     <Item>
@@ -12,7 +12,7 @@ export default function TrendingMoviesItem({ id, title }) {
     </Item>
   );
 }
-TrendingMoviesItem.propTypes = {
+MoviesItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
 };

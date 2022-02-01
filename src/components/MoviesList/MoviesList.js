@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import MoviesItem from "./MoviesItem/MoviesItem";
 import { List } from "./MoviesList.styled";
 
-export default function TrendingMoviesList({ movies }) {
+export default function MoviesList({ movies }) {
   return (
     <List>
       {movies.map((item) => (
@@ -11,6 +11,6 @@ export default function TrendingMoviesList({ movies }) {
     </List>
   );
 }
-TrendingMoviesList.propTypes = {
+MoviesList.propTypes = {
   movies: PropTypes.array.isRequired,
 };

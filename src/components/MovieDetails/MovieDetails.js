@@ -41,7 +41,7 @@ export default function MovieDetails() {
   }, [movieId]);
 
   const onGoBack = () => {
-    navigate(location.state.from.pathname);
+    navigate(location.state?.from ?? "/");
   };
   return isLoading ? (
     <Loader />
@@ -73,10 +73,14 @@ export default function MovieDetails() {
             <TitleText>Additional information</TitleText>
             <ul>
               <Item>
-                <Link to="cast">Cast</Link>
+                <Link to="cast" state={{ from: location.state?.from }}>
+                  Cast
+                </Link>
               </Item>
               <Item>
-                <Link to="reviews">Reviews</Link>
+                <Link to="reviews" state={{ from: location.state?.from }}>
+                  Reviews
+                </Link>
               </Item>
             </ul>
           </div>
