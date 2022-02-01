@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
+import { Suspense } from "react";
 import { StyledNavLink, Header } from "./Navigation.styled";
+import Loader from "../Loader";
 
 function Navigation() {
   return (
@@ -10,7 +12,9 @@ function Navigation() {
           <StyledNavLink to="/movies">Movies</StyledNavLink>
         </nav>
       </Header>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }
